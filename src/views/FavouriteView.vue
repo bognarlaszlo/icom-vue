@@ -15,7 +15,6 @@
             <h1 class="d-flex justify-content-between h2">Kedvencek <span class="badge text-bg-dark small">{{ favorites.length }}db</span></h1>
             <ListingCard
                 v-for="listing in favorites"
-                @click
                 :listing="listing"
                 :getStatus="getStatus"
                 :setStatus="setStatus"

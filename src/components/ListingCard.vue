@@ -1,4 +1,6 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+    import { RouterLink } from 'vue-router'
+</script>
 <script lang="ts">
 export default {
     props: ['listing', 'getStatus', 'setStatus']
@@ -12,7 +14,9 @@ export default {
             </div>
             <div class="g-col-md-8 g-col-12">
                 <div class="card-body">
-                    <h5 class="card-title">{{ listing.address }}</h5>
+                    <RouterLink :to="`/listing/${listing.adId}`">
+                        <h5 class="card-title">{{ listing.address }}</h5>
+                    </RouterLink>
                     <p class="card-text">{{ listing.price }} {{ listing.currency }}</p>
                 </div>
 
