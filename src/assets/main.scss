@@ -3,6 +3,8 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons.css';
 
+@import './icom/listing';
+
 body {
     background: $gray-100;
 }

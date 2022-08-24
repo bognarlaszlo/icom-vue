@@ -1,0 +1,22 @@
+.listing {
+    img {
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+    }
+
+    button {
+        position: absolute;
+        top: 0;
+        right: 0;
+
+        .bi-star-fill {
+            color: $yellow;
+        }
+    }
+
+    @include media-breakpoint-down('md') {
+        img { aspect-ratio: 16 / 9 }
+        h5 { font-size: $h6-font-size }
+    }
+}
