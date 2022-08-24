@@ -3,9 +3,13 @@
         width: 100%;
         aspect-ratio: 4 / 3;
         object-fit: cover;
+
+        &.img-grid {
+            height: 100%;
+        }
     }
 
-    button {
+    .favorite {
         position: absolute;
         top: 0;
         right: 0;

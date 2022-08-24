@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import listings from '../assets/data/listings.json'
 
-interface Listing {
+export interface Listing {
     adId: number,
     address: string,
     price: string|number,
@@ -10,7 +10,6 @@ interface Listing {
     uploadDate: string,
     description: string,
     status: string,
-    isFavourite?: boolean,
     contact: {
         email: string,
         parsedPhoneNumbers: Array<string>
@@ -21,37 +20,44 @@ export const useListingsStore = defineStore({
     id: 'listings',
     state: () => {
         return {
-            listings: data() as Array<Listing>,
-            single: null as Listing | null
-        }
-    },
-    getters: {
-        favorites(state) {
-            return state.listings.filter((listing: Listing) => listing.status === 'checked')
+            listings: [] as Array<Listing>,
+            single: {} as Listing,
+            orderBy: 'address' as keyof Listing
         }
     },
     actions: {
-        getSingle(id: number) {
-            this.single = this.listings.find(listing => listing.adId === id) || null
-            console.log(this.single)
+        getListings() {
+            this.listings = data()
         },
-        getStatus(listing: Listing) {
-            return listing.status === 'checked' ? 'bi-star-fill' : 'bi-star'
+        changeOrder(key: keyof Listing) {
+            this.orderBy = key
         },
-        setStatus(listing: Listing) {
+        toggleStatus(listing: Listing) {
             listing.status = listing.status !== 'checked' ? 'checked' : 'unchecked'
             save(this.listings)
         }
-    }
+    },
+    getters: {
+        getFavoriteList(state) {
+            return state.listings
+                .filter((listing: Listing) => listing.status === 'checked')
+                .sort((a, b) => {
+                    return a[state.orderBy] < b[state.orderBy] ? 1 : -1
+                })
+        },
+        getSingleListing(state) {
+            return (id: string) => state.listings.find(listing => listing.adId === Number(id))
+        },
+    },
 })
 
 const data = (): Array<Listing> => {
-    let saved = localStorage.getItem('listings')
+    const saved = localStorage.getItem('listings')
 
     return saved
         ? JSON.parse(saved)
         : listings.ads
-                .map(PriceMiddleware)
+            .map(PriceMiddleware)
 }
 
 const save = (listings: Array<Listing>) => {

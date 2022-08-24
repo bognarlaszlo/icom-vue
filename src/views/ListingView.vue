@@ -1,9 +1,11 @@
 <script setup lang="ts">
     import ListingCard from '@/components/ListingCard.vue'
     import SideNavigation from '@/components/SideNavigation.vue'
-
-    import { useListingsStore } from '@/stores/listing'
-    const { listings, getStatus, setStatus } = useListingsStore();
+</script>
+<script lang="ts">
+    export default {
+        props: ['listings', 'toggleStatus']
+    }
 </script>
 
 <template>
@@ -16,8 +18,7 @@
             <ListingCard
                 v-for="listing in listings"
                 :listing="listing"
-                :getStatus="getStatus"
-                :setStatus="setStatus"
+                :toggleStatus="toggleStatus"
                 :key="listing.adId"
             />
         </div>

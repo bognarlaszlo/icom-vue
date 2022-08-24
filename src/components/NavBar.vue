@@ -1,9 +1,9 @@
 <template>
     <nav class="navbar sticky-top bg-white">
         <div class="container">
-            <a class="navbar-brand" href="">
+            <RouterLink to="/" class="navbar-brand">
                 <img alt="ingatlan.com" class="logo" src="@/assets/logo.svg" width="218"/>
-            </a>
+            </RouterLink>
         </div>
     </nav>
 </template>
