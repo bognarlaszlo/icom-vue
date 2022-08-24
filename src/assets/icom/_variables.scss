@@ -1,0 +1,29 @@
+$gray-100:                      #fafbff;
+
+$yellow:                        #ffb300;
+
+// Options
+$enable-cssgrid:                true;
+
+// Spacing
+$spacer: 1.25rem;
+$spacers: (
+    0: 0,
+    1: $spacer * .25,
+    2: $spacer * .6,
+    3: $spacer,
+    4: $spacer * 2,
+    5: $spacer * 3,
+) !default;
+
+// Grid containers
+$container-max-widths: (
+    sm: 540px,
+    md: 720px,
+    lg: 840px,
+    xl: 1020px,
+    xxl: 1200px
+) !default;
+
+// Grid columns
+$grid-gutter-width:             2.5rem;
